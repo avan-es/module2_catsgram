@@ -1,9 +1,11 @@
 package ru.yandex.practicum.catsgram.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.catsgram.exeption.InvalidEmailException;
 import ru.yandex.practicum.catsgram.exeption.UserAlreadyExistException;
 import ru.yandex.practicum.catsgram.model.User;
+import ru.yandex.practicum.catsgram.service.UserService;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,38 +14,28 @@ import java.util.HashMap;
 @RequestMapping("/users")
 public class UserController {
     //private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private final UserService userService;
 
-    private final HashMap<String, User> users = new HashMap<>();
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @GetMapping
     public Collection<User> findAllUsers() {
         //log.debug("Текущее количество пользоваттелей: {}", users.size());
-        return users.values();
+        return userService.findAllUsers();
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-            if (user.getEmail() == null ||
-                    user.getEmail().isBlank()) {
-                throw new InvalidEmailException("Адрес электронной почты не может быть пустым.");
-            }
-            if (users.containsKey(user.getEmail())) {
-                throw new UserAlreadyExistException("Пользователь с электронной почтой " +
-                        user.getEmail() + " уже зарегистрирован.");
-            }
-                //log.debug("Пользователь {} добавлен!", user);
-                users.put(user.getEmail(), user);
-            return user;
+            return userService.createUser(user);
     }
 
     @PutMapping
     public User updateUser(@RequestBody User user) {
-        if (user.getEmail() == null ||
-                user.getEmail().isBlank()) {
-            throw new InvalidEmailException("Адрес электронной почты не может быть пустым.");
-        }
-        users.put(user.getEmail(), user);
-        return user;
+        return userService.updateUser(user);
     }
 }
