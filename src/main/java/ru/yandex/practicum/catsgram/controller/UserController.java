@@ -9,6 +9,7 @@ import ru.yandex.practicum.catsgram.service.UserService;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -27,6 +28,11 @@ public class UserController {
     public Collection<User> findAllUsers() {
         //log.debug("Текущее количество пользоваттелей: {}", users.size());
         return userService.findAllUsers();
+    }
+
+    @GetMapping("/user/{userEmail}")
+    public Optional<User> findUserById(@PathVariable String userEmail) {
+        return Optional.ofNullable(userService.findUserByEmail(userEmail));
     }
 
     @PostMapping
