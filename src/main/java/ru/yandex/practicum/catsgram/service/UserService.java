@@ -1,8 +1,8 @@
 package ru.yandex.practicum.catsgram.service;
 
 import org.springframework.stereotype.Service;
-import ru.yandex.practicum.catsgram.exeption.InvalidEmailException;
-import ru.yandex.practicum.catsgram.exeption.UserAlreadyExistException;
+import ru.yandex.practicum.catsgram.exception.InvalidEmailException;
+import ru.yandex.practicum.catsgram.exception.UserAlreadyExistException;
 import ru.yandex.practicum.catsgram.model.User;
 
 import java.util.Collection;

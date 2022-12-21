@@ -1,4 +1,4 @@
-package ru.yandex.practicum.catsgram.exeption;
+package ru.yandex.practicum.catsgram.exception;
 
 public class UserAlreadyExistException extends RuntimeException {
 
