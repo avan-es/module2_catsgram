@@ -9,7 +9,7 @@ public class Post {
     private String description; // описание
     private String photoUrl; // url-адрес фотографии
 
-    private Integer postId; // ID поста
+    private Integer id; // ID поста
 
     public Post(String author, String description, String photoUrl) {
         this.author = author;
@@ -17,12 +17,12 @@ public class Post {
         this.photoUrl = photoUrl;
     }
 
-    public Integer getPostId() {
-        return postId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPostId(Integer postId) {
-        this.postId = postId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getAuthor() {
